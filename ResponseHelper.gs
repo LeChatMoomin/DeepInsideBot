@@ -1,11 +1,10 @@
-class ResponseHelper{
-  static SendUnknownCommandResponse(chat_id){
-    SendResponse(chat_id, "Команда не распознана");
-  }
 
-  static SendHelpInfoResponse(chat_id){
-    SendResponse(chat_id, "Памагити");
-  }
+function SendUnknownCommandResponse(chat_id){
+  SendResponse(chat_id, "Команда не распознана");
+}
+
+function SendHelpInfoResponse(chat_id){
+  SendResponse(chat_id, "Памагити");
 }
  
 function SendResponse(chat_id, text, keyBoard){

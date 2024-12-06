@@ -1,10 +1,9 @@
 const TechSheetId = "1CID8CmKOpVs3UYRVYtWgHsTqQeB59gTtb3KJspcQXkQ";
 const GuestSheetId = "11_Hwq9wTtbcjHW85tuGUULm0a3a9NoFBC5IfsV0TvMo";
-const WorkSheetId = "1s_rigrCFNgCA2PGDr2mZUA5AzSRSHhyW6QXjORs0RxQ";
+const WorkTimeSheetId = "1lwmErYonIMPxB8JI6QQoibP_WilNDzJtduSgZcPXkT8";
+const MainSheetId = "1s_rigrCFNgCA2PGDr2mZUA5AzSRSHhyW6QXjORs0RxQ";
 
 const BotToken = "7426940346:AAFlm0c-H3GYbBO7PP0QZkUmBDop5Dfl-lw";
-
-const HelpMessageText = "Памагити";
 
 const CommandType = {
   Unknown : "Unknown",
@@ -12,6 +11,10 @@ const CommandType = {
   AddGuests : "AddGuests",
   PostArrivalRecord : "PostArrivalRecord",
   PostLeaveRecord : "PostLeaveRecord",
+}
+
+const WorkerRow = {
+  "" : 6
 }
 
 const BaseMenuCommand = {

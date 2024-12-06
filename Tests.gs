@@ -1,6 +1,6 @@
 function TestComandTypeParser() {
-  let type = Utilities.formatDate(new Date(), 'Etc/GMT', 'dd.MM');
-  Logger.log(MonthNamesLocalized[type.split(".")[1]]);
+  let type =(new Date()).toTimeString().split(" ")[0];
+  Logger.log(type);
 }
 
 function TestTypes(){
@@ -12,21 +12,12 @@ function TestTypes(){
 }
 
 function TestEnums(){
-  let text = "Яндекс";
-  let values = Object.values(GuestSourceRegs);
-  for(let i = 0; i < values.length; i++){
-    if(text.match(values[i])){
-      Logger.log(GuestSourceRowIndex[Object.keys(GuestSourceRegs)[i]]);
-    }
-  }
-  //GuestSourceRegs.forEach(  reg => {Logger.log(reg);});
+  let data = new PostData(291296492, "Пришла", "AlexJordan42", CommandType.PostArrivalRecord);
+  let cell = AddArrivalRec(data);
 }
 
-function TestValueType(){
-  let list = SpreadsheetApp.openById(GuestSheetId).getSheetByName("Декабрь");
-  let date = "07.12";
-  let lastColumn =  list.getLastColumn();
-
-  let value =list.getRange(3,2).getValue(); //list.getRange(2, 2, 2, lastColumn).createTextFinder(date).matchCase(false).findNext().getColumn();
-  Logger.log(value);
+function FillSomeShit(){
+  let text = "Пришла";
+  let match = text.match(timeReg);
+  Logger.log(match);
 }

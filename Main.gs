@@ -4,13 +4,13 @@ class PostData{
     this.text = text;
     this.username = username;
     this.commandType = commandType;
-    this.date = new Date(); 
+    this.dateTime = new Date(); 
   }
 }
 
 function DoPost(post){
   let data = GetPostData(JSON.parse(post.postData.contents));
-  SheetManager.AppendRow(TechSheetId, "Debug", [data.username, data.text, data.commandType, data.date.toLocaleString()]);
+  AppendRow(TechSheetId, "Debug", [data.username, data.text, data.commandType, data.dateTime.toLocaleString()]);
   HandlePostCommand(data);
 }
 

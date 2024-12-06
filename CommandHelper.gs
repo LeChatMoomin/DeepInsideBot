@@ -21,10 +21,11 @@ function HandlePostCommand(data){
       AddGuests(data);
     break;
     case CommandType.PostArrivalRecord:
-    
+      AddArrivalRec(data);
+      
     break;
     case CommandType.PostLeaveRecord:
-    
+      AddLeaveRec(data);
     break;
     default:
     ResponseHelper.SendUnknownCommandResponse(data.chat_id);
@@ -42,10 +43,10 @@ function HandleMenuCommand(data){
       ResponseHelper.SendHelpInfoResponse(data.chat_id);
     break;
     case JobTitle.admin:
-      WorkersHelper.SetJobTitle(data, JobTitle.admin);
+      SetJobTitle(data, JobTitle.admin);
     break;
     case JobTitle.moderator:
-      WorkersHelper.SetJobTitle(data, JobTitle.moderator);
+      SetJobTitle(data, JobTitle.moderator);
     break;
     default:
      ResponseHelper.SendUnknownCommandResponse(data.chat_id);
