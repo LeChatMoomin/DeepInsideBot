@@ -5,6 +5,7 @@ function PostValue(sheetId, listName, row, column, value){
 }
 
 function AppendRow(sheetId, listName, value){
+  Logger.log(value);
   let sheet = SpreadsheetApp.openById(sheetId).getSheetByName(listName) 
   sheet.appendRow(value);
 }

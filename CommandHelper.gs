@@ -1,15 +1,12 @@
 function ParseCommandType(text){
-  if(text.startsWith("/")){
-    return CommandType.BaseMenu;
-  }else if(text.match(guestEnterReg)){
-    return CommandType.AddGuests;
-  }else if(text.match(appearenceReg)){
-    return CommandType.PostArrivalRecord;
-  }else if(text.match(leaveReg)){
-    return CommandType.PostLeaveRecord;
-  }else {
-    return CommandType.Unknown;
+  let regs = Object.values(CommandTypeRegs);
+  let keys = Object.keys(CommandTypeRegs);
+  for(let i = 0; i < regs.length; i++){
+    if(text.match(regs[i])){
+      return CommandType[keys[i]];
+    }
   }
+  return CommandType.Unknown;
 }
 
 function HandlePostCommand(data){
@@ -22,25 +19,36 @@ function HandlePostCommand(data){
     break;
     case CommandType.PostArrivalRecord:
       AddArrivalRec(data);
-      
     break;
     case CommandType.PostLeaveRecord:
       AddLeaveRec(data);
     break;
+    case CommandType.AddShiftRequest:
+      AddShiftRequest(data);
+    break;
+    case CommandType.RemoveShiftRequest:
+      RemoveShiftRequest(data);
+    break;
+    case CommandType.BlockShift:
+      AddShiftBlock(data);
+    break;
     default:
-    ResponseHelper.SendUnknownCommandResponse(data.chat_id);
+      SendUnknownCommandResponse(data.chat_id);
     break;
   }
 }
 
 function HandleMenuCommand(data){
-  switch(data.text.remove("/").toLowerCase()){
+  switch(data.text.replace("/", "")){
     case BaseMenuCommand.start:
     case BaseMenuCommand.changeRole:
       SendResponse(data.chat_id, "Как вас записать?", JobTitleKeyboard);
     break;
     case BaseMenuCommand.help:
-      ResponseHelper.SendHelpInfoResponse(data.chat_id);
+      SendHelpInfoResponse(data.chat_id);
+    break;
+    case BaseMenuCommand.myId:
+      SendResponse(data.chat_id, `Ваш telegram Id: ${data.chat_id}`);
     break;
     case JobTitle.admin:
       SetJobTitle(data, JobTitle.admin);
@@ -49,7 +57,7 @@ function HandleMenuCommand(data){
       SetJobTitle(data, JobTitle.moderator);
     break;
     default:
-     ResponseHelper.SendUnknownCommandResponse(data.chat_id);
+     SendUnknownCommandResponse(data.chat_id);
     break;
   }
 }

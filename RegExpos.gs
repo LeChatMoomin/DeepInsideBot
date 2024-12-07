@@ -1,15 +1,20 @@
-const guestEnterReg = /^\d+/;
-
-const appearenceReg = /пришла/i;
-const leaveReg = /ушла/i;
 const timeReg = /\d\d:\d\d/;
 const dateReg = /\d\d[.]\d\d/
+const eveningShiftReg = /вечер/i;
 
-const baseComandReg = /\\/;
+const CommandTypeRegs = {
+  "BaseMenu" : /\//,
+  "AddGuests" : /^\d+/,
+  "PostArrivalRecord" : /пришла/i,
+  "PostLeaveRecord" : /ушла/i,
+  "AddShiftRequest" : /взять/i,
+  "RemoveShiftRequest" : /убрать/i,
+  "BlockShift" : /не смогу/i,
+}
 
 const GuestSourceRegs = {
   Yandex : /яндекс|афиша/i,
-  Friends : /друз[(ья)(ей)]|знакомы[ех]/i,
+  Friends : /друз[(ья)(ей)]|знакомы[ех]|сарафан/i,
   Beriozka : /beriozka|бер[её]зка/i,
   StreetAds : /((уличная)|(на улице))/i,
   Moscow : /москв[ае]/i,

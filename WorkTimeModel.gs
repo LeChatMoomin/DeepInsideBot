@@ -1,11 +1,9 @@
-const MorningShiftRangeOffset = 0;
-const EveningShiftRangeOffset = 1;
 const ArrivalRangeOffset = 2;
 const LeaveRangeOffset = 3;
 const TotalWorkTimeOffset = 4;
 
 function AddArrivalRec(data){
-  let list = SpreadsheetApp.openById(WorkTimeSheetId).getSheetByName("Лист1");
+  let list = SpreadsheetApp.openById(WorkTimeSheetId).getSheetByName(WorkShiftListName);
   let date = GetDatePost(data.dateTime, data.text);
   let time = GetTimePost(data.dateTime, data.text);
   PostWorkTime(list, data.username, date, time, ArrivalRangeOffset);
@@ -13,7 +11,7 @@ function AddArrivalRec(data){
 }
 
 function AddLeaveRec(data){
-  let list = SpreadsheetApp.openById(WorkTimeSheetId).getSheetByName("Лист1");
+  let list = SpreadsheetApp.openById(WorkTimeSheetId).getSheetByName(WorkShiftListName);
   let date = GetDatePost(data.dateTime, data.text);
   let time = GetTimePost(data.dateTime, data.text);
   PostWorkTime(list, data.username, date, time, LeaveRangeOffset);
@@ -24,15 +22,15 @@ function AddLeaveRec(data){
 function GetTotalWorkTime(list, username, date){
   let column = GetColumnForWorkerNEWSheet(list, username);
   let range = GetDateRangeForWorkerNEW(list, date);
-  let arrivalCell = list.getRange(range.getRow() + TotalWorkTimeOffset, column);
-  return arrivalCell.getValue().toTimeString().split(" ")[0].match(timeReg);
+  let cell = list.getRange(range.getRow() + TotalWorkTimeOffset, column);
+  return cell.getValue().toTimeString().split(" ")[0].match(timeReg);
 }
 
 function PostWorkTime(list, username, date, time, rangeOffset){
   let column = GetColumnForWorkerNEWSheet(list, username);
   let range = GetDateRangeForWorkerNEW(list, date);
-  let arrivalCell = list.getRange(range.getRow() + rangeOffset, column);
-  arrivalCell.setValue(time);
+  let cell = list.getRange(range.getRow() + rangeOffset, column);
+  cell.setValue(time);
 }
 
 function GetTimePost(dateTime, text){
@@ -62,7 +60,7 @@ function GetColumnForWorkerNEWSheet(list, username){
 }
 
 function GetRowForWorkerOLDSheet(list, username){
-  let fullName = WorkerNames[username];
-  let nameRow = list.getRange(2, 1, list.getLastRow(), 1).createTextFinder(fullName).matchCase(false).findNext().getRow();
-  return nameRow;
+  // let fullName = WorkerNames[username];
+  // let nameRow = list.getRange(2, 1, list.getLastRow(), 1).createTextFinder(fullName).matchCase(false).findNext().getRow();
+  // return nameRow;
 }

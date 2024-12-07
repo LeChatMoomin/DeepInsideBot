@@ -3,6 +3,12 @@ function TestComandTypeParser() {
   Logger.log(type);
 }
 
+function DataTest(){
+  let data = new PostData(291296492, "1 тгк", "AlexJordan42", CommandType.AddGuests);
+  Logger.log(data.dateTime);
+  AddGuests(data);
+}
+
 function TestTypes(){
   let num = 1;
   let char = 'a';
@@ -12,8 +18,8 @@ function TestTypes(){
 }
 
 function TestEnums(){
-  let data = new PostData(291296492, "Пришла", "AlexJordan42", CommandType.PostArrivalRecord);
-  let cell = AddArrivalRec(data);
+  let data = new PostData(291296492, "/myId", "AlexJordan42", CommandType.BaseMenu);
+  let cell = HandleMenuCommand(data);
 }
 
 function FillSomeShit(){

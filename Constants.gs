@@ -1,7 +1,9 @@
 const TechSheetId = "1CID8CmKOpVs3UYRVYtWgHsTqQeB59gTtb3KJspcQXkQ";
 const GuestSheetId = "11_Hwq9wTtbcjHW85tuGUULm0a3a9NoFBC5IfsV0TvMo";
 const WorkTimeSheetId = "1lwmErYonIMPxB8JI6QQoibP_WilNDzJtduSgZcPXkT8";
+
 const MainSheetId = "1s_rigrCFNgCA2PGDr2mZUA5AzSRSHhyW6QXjORs0RxQ";
+const WorkShiftListName = "Лист1";
 
 const BotToken = "7426940346:AAFlm0c-H3GYbBO7PP0QZkUmBDop5Dfl-lw";
 
@@ -11,16 +13,16 @@ const CommandType = {
   AddGuests : "AddGuests",
   PostArrivalRecord : "PostArrivalRecord",
   PostLeaveRecord : "PostLeaveRecord",
-}
-
-const WorkerRow = {
-  "" : 6
+  AddShiftRequest : "AddShiftRequest",
+  RemoveShiftRequest : "RemoveShiftRequest",
+  BlockShift : "BlockShift",
 }
 
 const BaseMenuCommand = {
   start : "start",
   help : "help",
   changeRole : "changeRole",
+  myId : "myId",
 }
 
 const MonthNamesLocalized = {
@@ -67,5 +69,6 @@ const JobTitleKeyboard = {
   "inline_keyboard" : [
     [{"text" : "Админ", "callback_data" : "/admin"}],
     [{"text" : "Модератор", "callback_data" : "/moderator"}],
+    [{"text" : "Менеджер", "callback_data" : "/manager"}]
   ]
 }

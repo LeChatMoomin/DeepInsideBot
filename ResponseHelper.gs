@@ -1,4 +1,3 @@
-
 function SendUnknownCommandResponse(chat_id){
   SendResponse(chat_id, "Команда не распознана");
 }
